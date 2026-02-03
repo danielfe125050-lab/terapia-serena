@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #8A9A5B;
+  --color-secondary: #F5F5DC;
+  --color-accent: #2F4F4F;
+  --color-text: #333333;
+  --color-bg: #FFFFFF;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-gray-800 bg-white antialiased leading-relaxed;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif font-bold text-accent;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-6;
+  }
+
+  .section {
+    @apply py-24;
+  }
+
+  .minimal-btn {
+    @apply px-6 py-3 border border-current font-sans font-semibold transition-all duration-300 inline-block no-underline;
+    color: var(--color-accent);
+  }
+
+  .minimal-btn:hover {
+    @apply bg-accent text-secondary;
+  }
+}
+
+/* WoW Effect - Animated Gradient Background */
+.bg-gradient-slow {
+  background: linear-gradient(-45deg, #f5f5dc, #ffffff, #e8f0e0, #ffffff);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
