@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { AlertCircle, Activity, HeartPulse, Brain } from 'lucide-react';
+import { CircleAlert, Activity, HeartPulse, Brain } from 'lucide-react';
 
 const Education = () => {
     return (

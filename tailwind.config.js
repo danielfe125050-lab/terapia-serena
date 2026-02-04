@@ -7,9 +7,11 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#8A9A5B', // Verde Salvia
-                secondary: '#F5F5DC', // Crema/Arena
-                accent: '#2F4F4F', // Gris Pizarra
+                primary: '#5D9CEC', // Azul Escudo (Confianza/Calma)
+                secondary: '#F0F4F8', // Azul Hielo (Fondo suave)
+                accent: '#102A43', // Navy Profundo (Texto/Contrastes)
+                'accent-pop': '#486581', // Azul Acero
+                'deep-blue': '#243B53', // Azul Noche
             },
             fontFamily: {
                 serif: ['"Playfair Display"', 'serif'],

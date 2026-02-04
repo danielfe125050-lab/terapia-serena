@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle, Brain, Pill, Scale, Heart, Sparkles, Users } from 'lucide-react';
+import { X, CircleCheck, Brain, Pill, Scale, Heart, Sparkles, Users } from 'lucide-react';
 
 const PsychologistGuide = ({ isOpen, onClose }) => {
     const [activeTab, setActiveTab] = useState('clasico');

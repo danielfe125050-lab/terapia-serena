@@ -1,45 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import Hero from './components/Hero';
-import Services from './components/Services';
-import Contact from './components/Contact';
+import InteractiveServices from './components/InteractiveServices';
 import Team from './components/Team';
-import PsychologistGuide from './components/PsychologistGuide';
-import Education from './components/Education';
+import Contact from './components/Contact';
+import ChoosingGuideSection from './components/ChoosingGuideSection';
 import Resources from './components/Resources';
+import MenuDrawer from './components/MenuDrawer';
+import NoiseOverlay from './components/NoiseOverlay';
 
 function App() {
-  const [isGuideOpen, setIsGuideOpen] = useState(false);
-
   useEffect(() => {
     document.title = "Terapia Serena - Centro de Atención Psicológica Virtual";
   }, []);
 
   return (
-    <main className="antialiased">
-      {/* Navbar Minimalista (Opcional, pero ayuda a la navegación) */}
-      <nav className="fixed w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center mix-blend-difference text-white">
-        <div className="font-serif text-2xl font-bold">TS.</div>
-        <div className="hidden md:flex gap-8 text-sm uppercase tracking-widest font-medium">
-          <a href="#inicio" className="hover:opacity-60 transition-opacity">Inicio</a>
-          <a href="#servicios" className="hover:opacity-60 transition-opacity">Servicios</a>
-          <a href="#contacto" className="hover:opacity-60 transition-opacity">Contacto</a>
-        </div>
-        {/* Mobile menu placeholder simplicity */}
-        <div className="md:hidden text-sm uppercase tracking-widest font-medium">
-          Menu
-        </div>
-      </nav>
+    <main className="antialiased bg-secondary text-accent font-sans selection:bg-primary selection:text-white">
+      <NoiseOverlay />
+      <MenuDrawer />
+
+      {/* Logo Area */}
+      <div className="absolute top-2 left-2 md:top-4 md:left-8 z-50 pointer-events-none mix-blend-difference">
+        {/* Instrucción para el usuario: Reemplaza '/logo.png' en public con tu archivo real */}
+        <img
+          src="/logo.png"
+          alt="Terapia Serena Logo"
+          className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl opacity-100"
+          onError={(e) => {
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'block';
+          }}
+        />
+        {/* Fallback si no hay logo */}
+        <div className="hidden font-serif text-2xl font-bold tracking-tighter text-white">TS.</div>
+      </div>
 
       <div id="inicio">
-        <Hero onOpenGuide={() => setIsGuideOpen(true)} />
+        <Hero />
       </div>
-      <Services />
-      <Education />
+      <InteractiveServices />
+      <ChoosingGuideSection />
       <Resources />
       <Team />
       <Contact />
-
-      <PsychologistGuide isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} />
     </main>
   );
 }

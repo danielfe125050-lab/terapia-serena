@@ -98,7 +98,7 @@ const Team = () => {
     });
 
     return (
-        <section className="section bg-white">
+        <section id="equipo" className="section bg-white">
             <div className="container">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl mb-4 font-serif text-gray-400">Conoce a nuestros especialistas</h2>
@@ -108,8 +108,8 @@ const Team = () => {
                                 key={cat}
                                 onClick={() => setFilter(cat)}
                                 className={`px-4 py-2 text-xs uppercase tracking-widest transition-all rounded-full ${filter === cat
-                                        ? 'bg-primary text-white font-bold'
-                                        : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                                    ? 'bg-primary text-white font-bold'
+                                    : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
                                     }`}
                             >
                                 {cat}
