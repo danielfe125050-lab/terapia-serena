@@ -25,10 +25,10 @@ const approaches = [
         color: "bg-purple-50 border-purple-200 text-purple-800"
     },
     {
-        title: "Psicoanalítico",
+        title: "Psicoanálisis",
         icon: BookOpen,
-        how: "Proceso profundo y reflexivo de larga duración; asociación libre, sueños y foco en conflictos internos.",
-        forYou: "Quieres explorar a fondo tu mundo interno y tu historia, sin prisa y con mucha reflexión.",
+        how: "A través del método de asociación libre, se propicia un espacio que explora experiencias reprimidas, buscando hacer consciente, lo inconsciente.",
+        forYou: "Tienes interés en conocer rasgos personales y la raíz de diferentes situaciones que pueden estar generando malestar en la actualidad.  Estos procesos tienden a tener una larga duración debido a que se enfoca en toda la historia de vida.",
         color: "bg-indigo-50 border-indigo-200 text-indigo-800"
     },
     {
@@ -44,7 +44,7 @@ const quickCheck = [
     { text: "Quiero herramientas ya y medir progreso", result: "Cognitivo-conductual" },
     { text: "Quiero un espacio humano para conocerme", result: "Humanista" },
     { text: "Quiero entender por qué repito patrones", result: "Dinámicos" },
-    { text: "Quiero un proceso profundo y pausado", result: "Psicoanalítico" },
+    { text: "Quiero un proceso profundo y pausado", result: "Psicoanálisis" },
     { text: "Quiero aprender a aceptar y actuar según mis valores", result: "Tercera generación" },
 ];
 
@@ -62,14 +62,14 @@ const ChoosingGuideSection = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                <div id="enfoques" className="flex flex-wrap justify-center gap-6 mb-20">
                     {approaches.map((item, idx) => (
                         <motion.div
                             key={idx}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.1 }}
-                            className={`p-8 rounded-2xl border ${item.color} bg-white hover:shadow-lg transition-shadow`}
+                            className={`p-8 rounded-2xl border ${item.color} bg-white hover:shadow-lg transition-shadow w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]`}
                         >
                             <div className="flex items-center gap-3 mb-4">
                                 <div className={`p-2 rounded-lg bg-white/80`}>
@@ -91,7 +91,7 @@ const ChoosingGuideSection = () => {
                     ))}
                 </div>
 
-                <div className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-4xl mx-auto border border-blue-100">
+                <div id="chequeo-rapido" className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-4xl mx-auto border border-blue-100">
                     <div className="bg-accent p-8 text-center">
                         <h3 className="text-2xl font-serif text-white">Chequeo Rápido para Decidir</h3>
                         <p className="text-blue-100/90 text-sm mt-2">Identifica tu necesidad principal y encuentra tu camino.</p>

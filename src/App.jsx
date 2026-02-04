@@ -7,6 +7,7 @@ import ChoosingGuideSection from './components/ChoosingGuideSection';
 import Resources from './components/Resources';
 import MenuDrawer from './components/MenuDrawer';
 import NoiseOverlay from './components/NoiseOverlay';
+import BackToTop from './components/BackToTop';
 
 function App() {
   useEffect(() => {
@@ -42,6 +43,7 @@ function App() {
       <Resources />
       <Team />
       <Contact />
+      <BackToTop />
     </main>
   );
 }

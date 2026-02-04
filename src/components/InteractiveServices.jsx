@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CloudRain, Zap, Heart, Frown, Moon, Utensils, CircleHelp, ArrowRight, X } from 'lucide-react';
+import { CloudRain, Zap, Heart, Frown, Moon, Utensils, CircleHelp, ArrowRight, X, Globe } from 'lucide-react';
 
 const services = [
     {
@@ -21,7 +21,7 @@ const services = [
     },
     {
         id: 3,
-        title: "Atención a Parejas",
+        title: "Acompañamiento a Parejas",
         desc: "Mejoren la comunicación y resuelvan conflictos con respeto; reconstruyan acuerdos y confianza.",
         color: "bg-rose-100", // Rosa suave
         textColor: "text-rose-900",
@@ -58,6 +58,21 @@ const services = [
         color: "bg-teal-100", // Teal suave
         textColor: "text-teal-900",
         icon: CircleHelp
+    },
+    {
+        id: 8,
+        title: "Duelo Migratorio",
+        desc: "Es el anhelo de lo que dejamos atrás al mudarnos (personas, lugares, costumbres) mientras nos adaptamos a lo nuevo.",
+        color: "bg-amber-100", // Ámbar (Nostalgia/Hogar)
+        textColor: "text-amber-900",
+        icon: Globe,
+        details: [
+            "Extraño a mi gente y mis lugares, me siento fuera de lugar.",
+            "Echo de menos mis rutinas y mi forma de vivir.",
+            "Siento culpa por irme… o por quedarme.",
+            "A veces idealizo mi país; otras, idealizo el nuevo.",
+            "Estoy más sensible o cansado de lo normal."
+        ]
     }
 ];
 
@@ -75,6 +90,7 @@ const InteractiveServices = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {services.map((service) => (
                         <motion.div
+                            id={`servicio-${service.id}`} // ID para navegación
                             layoutId={`card-${service.id}`}
                             onClick={() => setSelectedId(service.id)}
                             key={service.id}
@@ -132,6 +148,20 @@ const InteractiveServices = () => {
                                             <p className={`text-lg ${service.textColor} leading-relaxed font-medium mb-8`}>
                                                 {service.desc}
                                             </p>
+
+                                            {service.details && (
+                                                <div className={`mb-8 p-6 rounded-2xl bg-white/50 border border-white/40`}>
+                                                    <h4 className={`font-bold mb-4 uppercase tracking-wider text-sm ${service.textColor} opacity-80`}>Señales Comunes:</h4>
+                                                    <ul className={`space-y-3 ${service.textColor}`}>
+                                                        {service.details.map((item, idx) => (
+                                                            <li key={idx} className="flex gap-3 text-base leading-snug">
+                                                                <span className="opacity-50">•</span>
+                                                                {item}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
 
                                             <a
                                                 href="#contacto"

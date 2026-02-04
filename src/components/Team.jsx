@@ -126,7 +126,8 @@ const Team = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5 }}
-                            className="flex flex-col justify-between"
+                            id={member.role.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
+                            className="flex flex-col justify-between scroll-mt-32"
                         >
                             <div className="mb-6">
                                 <p className="text-gray-500 italic font-light leading-relaxed text-[15px]">
