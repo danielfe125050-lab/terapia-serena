@@ -80,7 +80,7 @@ const MenuDrawer = () => {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed top-6 right-6 z-50 p-3 bg-accent text-white rounded-full hover:bg-accent/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105 border border-white/10 group"
+                className="fixed top-6 right-6 z-[100] p-3 bg-accent text-white rounded-full hover:bg-accent/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105 border border-white/10 group"
             >
                 <EllipsisVertical className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
             </button>
