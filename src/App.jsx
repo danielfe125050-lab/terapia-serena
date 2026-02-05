@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Hero from './components/Hero';
 import InteractiveServices from './components/InteractiveServices';
 import Team from './components/Team';
@@ -8,19 +9,27 @@ import Resources from './components/Resources';
 import MenuDrawer from './components/MenuDrawer';
 import NoiseOverlay from './components/NoiseOverlay';
 import BackToTop from './components/BackToTop';
+import { AuthProvider } from './context/AuthContext';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 
-function App() {
+// Componente Wrapper para detectar ruta y mostrar Home o Router
+const MainContent = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   useEffect(() => {
-    document.title = "Terapia Serena - Centro de Atención Psicológica Virtual";
-  }, []);
+    // Scroll al inicio al cambiar de ruta
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
-    <main className="antialiased bg-secondary text-accent font-sans selection:bg-primary selection:text-white">
+    <>
       <NoiseOverlay />
       <MenuDrawer />
 
-      {/* Logo Area */}
-      <div className="absolute top-2 left-2 md:top-4 md:left-8 z-50 pointer-events-none mix-blend-difference">
+      {/* Logo Area - Visible siempre */}
+      <div className="fixed top-2 left-2 md:top-4 md:left-8 z-50 pointer-events-none mix-blend-difference">
         {/* Instrucción para el usuario: Reemplaza '/logo.png' en public con tu archivo real */}
         <img
           src="/logo.png"
@@ -35,16 +44,39 @@ function App() {
         <div className="hidden font-serif text-2xl font-bold tracking-tighter text-white">TS.</div>
       </div>
 
-      <div id="inicio">
-        <Hero />
-      </div>
-      <InteractiveServices />
-      <ChoosingGuideSection />
-      <Resources />
-      <Team />
-      <Contact />
+      <Routes>
+        <Route path="/" element={
+          <div id="inicio">
+            <Hero />
+            <InteractiveServices />
+            <ChoosingGuideSection />
+            <Resources />
+            <Team />
+            <Contact />
+          </div>
+        } />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+
       <BackToTop />
-    </main>
+    </>
+  );
+};
+
+function App() {
+  useEffect(() => {
+    document.title = "Terapia Serena - Centro de Atención Psicológica Virtual";
+  }, []);
+
+  return (
+    <AuthProvider>
+      <Router>
+        <main className="antialiased bg-secondary text-accent font-sans selection:bg-primary selection:text-white">
+          <MainContent />
+        </main>
+      </Router>
+    </AuthProvider>
   );
 }
 

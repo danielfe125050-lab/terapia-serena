@@ -1,16 +1,42 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { EllipsisVertical, X, Facebook, Instagram, Twitter, ChevronDown, ChevronRight } from 'lucide-react';
+import { EllipsisVertical, X, Facebook, Instagram, Twitter, ChevronDown, LogIn, User } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const MenuDrawer = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [expandedSection, setExpandedSection] = useState(null);
+    const { user } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const toggleSection = (title) => {
         if (expandedSection === title) {
             setExpandedSection(null);
         } else {
             setExpandedSection(title);
+        }
+    };
+
+    const handleNavigation = (href) => {
+        setIsOpen(false);
+        if (href.startsWith('#')) {
+            // Si estamos en home, scroll normal
+            if (location.pathname === '/') {
+                const element = document.querySelector(href);
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                // Si estamos en login/dashboard, ir a home primero
+                navigate('/');
+                // Pequeño timeout para dar tiempo a cargar home antes de scrollear (solución simple)
+                setTimeout(() => {
+                    const element = document.querySelector(href);
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        } else {
+            navigate(href);
         }
     };
 
@@ -120,9 +146,11 @@ const MenuDrawer = () => {
                                         <li key={idx} className="border-b border-white/5 pb-2 last:border-none">
                                             <div className="flex items-center justify-between group">
                                                 <a
-                                                    href={item.href}
-                                                    onClick={() => !item.subItems.length && setIsOpen(false)}
-                                                    className="text-xl font-serif text-secondary hover:text-white transition-colors py-2 block flex-1"
+                                                    // href={item.href} // Eliminamos href directo para manejarlo con onClick
+                                                    onClick={() => {
+                                                        if (!item.subItems.length) handleNavigation(item.href);
+                                                    }}
+                                                    className="text-xl font-serif text-secondary hover:text-white transition-colors py-2 block flex-1 cursor-pointer"
                                                 >
                                                     {item.title}
                                                 </a>
@@ -148,9 +176,9 @@ const MenuDrawer = () => {
                                                         {item.subItems.map((sub, subIdx) => (
                                                             <li key={subIdx}>
                                                                 <a
-                                                                    href={sub.href}
-                                                                    onClick={() => setIsOpen(false)}
-                                                                    className="block py-2 text-sm text-gray-300 hover:text-white transition-colors hover:translate-x-1 duration-200"
+                                                                    // href={sub.href}
+                                                                    onClick={() => handleNavigation(sub.href)}
+                                                                    className="block py-2 text-sm text-gray-300 hover:text-white transition-colors hover:translate-x-1 duration-200 cursor-pointer"
                                                                 >
                                                                     {sub.title}
                                                                 </a>
@@ -161,6 +189,16 @@ const MenuDrawer = () => {
                                             </AnimatePresence>
                                         </li>
                                     ))}
+                                    {/* Login Link Special */}
+                                    <li className="border-b border-white/5 pb-2 pt-4">
+                                        <button
+                                            onClick={() => handleNavigation(user ? '/dashboard' : '/login')}
+                                            className={`w-full text-left text-xl font-serif py-2 flex items-center gap-3 transition-colors ${user ? 'text-primary' : 'text-white/80 hover:text-white'}`}
+                                        >
+                                            {user ? <User className="w-5 h-5" /> : <LogIn className="w-5 h-5" />}
+                                            {user ? 'Mi Perfil' : 'Iniciar Sesión'}
+                                        </button>
+                                    </li>
                                 </ul>
                             </nav>
 
