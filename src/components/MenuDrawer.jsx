@@ -21,15 +21,34 @@ const MenuDrawer = () => {
 
     const handleNavigation = (href) => {
         setIsOpen(false);
-        if (href.startsWith('#')) {
-            // Si estamos en home, scroll normal
+        if (href.startsWith('#servicio-')) {
+            // Lógica especial para abrir servicios directamente
+            const serviceId = parseInt(href.replace('#servicio-', ''));
+            // 1. Navegar a home si no estamos allí
+            if (location.pathname !== '/') {
+                navigate('/');
+                setTimeout(() => {
+                    const element = document.getElementById('servicios');
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                    // Despachar evento para abrir modal
+                    window.dispatchEvent(new CustomEvent('openService', { detail: serviceId }));
+                }, 100);
+            } else {
+                // 2. Si ya estamos en home, scrollear y abrir
+                const element = document.getElementById('servicios');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+                // Despachar evento para abrir modal (con pequeño delay para que el scroll inicie)
+                setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('openService', { detail: serviceId }));
+                }, 300);
+            }
+        } else if (href.startsWith('#')) {
+            // Scroll normal para otras secciones
             if (location.pathname === '/') {
                 const element = document.querySelector(href);
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
             } else {
-                // Si estamos en login/dashboard, ir a home primero
                 navigate('/');
-                // Pequeño timeout para dar tiempo a cargar home antes de scrollear (solución simple)
                 setTimeout(() => {
                     const element = document.querySelector(href);
                     if (element) element.scrollIntoView({ behavior: 'smooth' });
@@ -51,13 +70,14 @@ const MenuDrawer = () => {
             href: "#servicios",
             subItems: [
                 { title: "Ansiedad", href: "#servicio-1" },
-                { title: "Estrés", href: "#servicio-2" },
-                { title: "Acompañamiento a Parejas", href: "#servicio-3" },
-                { title: "Depresión", href: "#servicio-4" },
-                { title: "Dificultades del Sueño", href: "#servicio-5" },
-                { title: "Alimentación", href: "#servicio-6" },
-                { title: "Incomprensión Personal", href: "#servicio-7" },
-                { title: "Duelo Migratorio", href: "#servicio-8" }
+                { title: "Depresión", href: "#servicio-2" },
+                { title: "Estrés", href: "#servicio-3" },
+                { title: "Dificultades Alimentación", href: "#servicio-4" },
+                { title: "Autocomprensión", href: "#servicio-5" },
+                { title: "Parejas", href: "#servicio-6" },
+                { title: "Dificultades Sexuales", href: "#servicio-7" },
+                { title: "Identidad", href: "#servicio-8" },
+                { title: "Duelo Migratorio", href: "#servicio-9" }
             ]
         },
         {
@@ -86,13 +106,7 @@ const MenuDrawer = () => {
                 { title: "Psicoanalista", href: "#psicoanalista" },
                 { title: "Cognitivo-Conductual", href: "#cognitivo-conductual" },
                 { title: "Humanista", href: "#humanista" },
-                { title: "Sistémico", href: "#sist-mico" }, // slugify produce sist-mico por la tilde
-                { title: "Psiquiatría", href: "#psiquiatra" },
-                { title: "Neuropsicología", href: "#neuropsic-logo" },
-                { title: "Infanto-Juvenil", href: "#infanto-juvenil" },
-                { title: "Sexología", href: "#sex-loga" },
-                { title: "Forense", href: "#psic-logo-forense" },
-                { title: "Tercera Generación", href: "#tercera-generaci-n" }
+                { title: "Sistémico", href: "#sist-mico" } // slugify produce sist-mico por la tilde
             ]
         },
         {

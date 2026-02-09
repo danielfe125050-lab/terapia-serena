@@ -28,21 +28,6 @@ const MainContent = () => {
       <NoiseOverlay />
       <MenuDrawer />
 
-      {/* Logo Area - Visible siempre */}
-      <div className="fixed top-2 left-2 md:top-4 md:left-8 z-50 pointer-events-none mix-blend-difference">
-        {/* Instrucción para el usuario: Reemplaza '/logo.png' en public con tu archivo real */}
-        <img
-          src="/logo.png"
-          alt="Terapia Serena Logo"
-          className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl opacity-100"
-          onError={(e) => {
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
-          }}
-        />
-        {/* Fallback si no hay logo */}
-        <div className="hidden font-serif text-2xl font-bold tracking-tighter text-white">TS.</div>
-      </div>
 
       <Routes>
         <Route path="/" element={
@@ -73,6 +58,20 @@ function App() {
 
   return (
     <AuthProvider>
+      {/* Logo Area - Configurado con absolute igual que el menú para alineación y comportamiento idéntico */}
+      <div className="absolute top-6 left-6 z-[100] pointer-events-none">
+        <img
+          src="/Logo.png"
+          alt="Terapia Serena Logo"
+          className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl opacity-100"
+          onError={(e) => {
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'block';
+          }}
+        />
+        <div className="hidden font-serif text-2xl font-bold tracking-tighter text-white">TS.</div>
+      </div>
+
       <Router>
         <main className="antialiased bg-secondary text-accent font-sans selection:bg-primary selection:text-white">
           <MainContent />

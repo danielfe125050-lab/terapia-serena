@@ -35,7 +35,8 @@ const team = [
         imgPosition: "100% 0%",
         bgSize: "400%"
     },
-    // Grupo 2: Especialistas y 3ra Generación
+    // Especialistas adicionales ocultos temporalmente hasta recibir información real
+    /*
     {
         name: "Dra. Sofia V.",
         role: "Psiquiatra",
@@ -84,6 +85,7 @@ const team = [
         imgPosition: "100% 100%",
         bgSize: "300% 200%"
     }
+    */
 ];
 
 const Team = () => {

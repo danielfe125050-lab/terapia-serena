@@ -1,83 +1,204 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CloudRain, Zap, Heart, Frown, Moon, Utensils, CircleHelp, ArrowRight, X, Globe } from 'lucide-react';
+import { CloudRain, Zap, Heart, Frown, Utensils, CircleHelp, ArrowRight, X, Globe, Activity, Fingerprint } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const services = [
     {
         id: 1,
         title: "Ansiedad",
-        desc: "Herramientas simples para disminuir la preocupación y calmar el cuerpo; retoma el control de tu día a día.",
-        color: "bg-blue-100", // Azul suave más saturado
+        desc: "Mente y cuerpo en alerta constante, preocupación excesiva y dificultad para relajarse.",
+        fullDesc: "A veces sientes que tu mente y tu cuerpo están en alerta, incluso cuando no hay un motivo claro. La preocupación aparece de forma constante, te cuesta relajarte y sientes que algo malo podría pasar. Con el tiempo, esta sensación empieza a afectar tu bienestar, tus relaciones y tu vida diaria.",
+        color: "bg-blue-100",
         textColor: "text-blue-900",
-        icon: CloudRain
+        icon: CloudRain,
+        details: [
+            "Vivir con preocupación constante o sensación de peligro",
+            "Sentirte inquieto/a, nervioso/a o en estado de alerta permanente",
+            "Pensamientos que no se detienen",
+            "Palpitaciones, presión en el pecho o dificultad para respirar",
+            "Tensión muscular, dolores de cabeza o molestias en el estómago",
+            "Dificultad para dormir, descansar o concentrarte",
+            "Evitar situaciones por miedo o malestar"
+        ]
     },
     {
         id: 2,
-        title: "Estrés",
-        desc: "Aprende a poner límites y a descansar mejor; baja la tensión acumulada y recupera energía.",
-        color: "bg-orange-100", // Naranja suave
-        textColor: "text-orange-900",
-        icon: Zap
+        title: "Depresión",
+        desc: "Sensación de vacío, cansancio profundo y pérdida de interés en lo que antes disfrutabas.",
+        fullDesc: "A veces sientes que no es solo tristeza, sino un vacío o un cansancio profundo que no se va. Lo que antes te motivaba ya no genera el mismo interés y todo parece más pesado. Este estado se mantiene en el tiempo y comienza a afectar cómo te sientes, piensas y te relacionas con tu entorno.",
+        color: "bg-indigo-100",
+        textColor: "text-indigo-900",
+        icon: Frown,
+        details: [
+            "Tristeza frecuente o sensación de vacío",
+            "Pérdida de interés o placer en actividades que antes disfrutabas",
+            "Cansancio constante o falta de energía",
+            "Cambios en el sueño o el apetito",
+            "Autocrítica, culpa o desánimo persistente",
+            "Tendencia al aislamiento"
+        ]
     },
     {
         id: 3,
-        title: "Acompañamiento a Parejas",
-        desc: "Mejoren la comunicación y resuelvan conflictos con respeto; reconstruyan acuerdos y confianza.",
-        color: "bg-rose-100", // Rosa suave
-        textColor: "text-rose-900",
-        icon: Heart
+        title: "Estrés",
+        desc: "Sensación constante de prisa, agotamiento y dificultad para descansar o desconectar.",
+        fullDesc: "A veces sientes que vas siempre apurado/a, como si no pudieras parar. Las responsabilidades se acumulan y no logras descansar lo suficiente. Aunque sigues funcionando, tu cuerpo y tu mente están agotados.",
+        color: "bg-orange-100",
+        textColor: "text-orange-900",
+        icon: Zap,
+        details: [
+            "Sensación de cansancio la mayor parte del tiempo",
+            "Irritabilidad o poca paciencia",
+            "Dificultad para concentrarte o tomar decisiones",
+            "Dolores frecuentes en cuello, espalda o mandíbula",
+            "Sensación constante de estar “corriendo” o bajo presión"
+        ]
     },
     {
         id: 4,
-        title: "Depresión",
-        desc: "Acompañamiento cercano para salir del bloqueo; activamos hábitos y apoyo para recuperar motivación.",
-        color: "bg-indigo-100", // Indigo suave
-        textColor: "text-indigo-900",
-        icon: Frown
+        title: "Dificultades Alimentación",
+        desc: "Relación tensa con la comida y el cuerpo, marcada por culpa, ansiedad o pérdida de control.",
+        fullDesc: "A veces sientes que tu relación con la comida y con tu cuerpo se vuelve tensa o angustiante. La comida ocupa mucho espacio en tus pensamientos y aparece la culpa, la ansiedad o la sensación de pérdida de control. No es solo lo que comes, sino cómo te sientes contigo.",
+        color: "bg-green-100",
+        textColor: "text-green-900",
+        icon: Utensils,
+        details: [
+            "Preocupación constante por la comida, el peso o la imagen corporal",
+            "Restricción alimentaria o dietas muy estrictas",
+            "Comer con ansiedad o sentir que pierdes el control",
+            "Uso de la comida para calmar emociones",
+            "Culpa, vergüenza o malestar después de comer",
+            "Evitar comidas o situaciones sociales",
+            "Cambios notorios en el peso"
+        ]
     },
     {
         id: 5,
-        title: "Dificultades del Sueño",
-        desc: "Rutinas y ejercicios para conciliar y mantener el sueño; crea noches más reparadoras.",
-        color: "bg-purple-100", // Morado suave
-        textColor: "text-purple-900",
-        icon: Moon
+        title: "Autocomprensión",
+        desc: "Confusión sobre lo que sientes o necesitas, costando identificar emociones o reacciones.",
+        fullDesc: "A veces sientes que no logras entender del todo lo que te pasa. Te cuesta identificar lo que sientes, lo que necesitas o por qué reaccionas de cierta manera. Esto puede generar confusión y una sensación de desconexión contigo mismo/a.",
+        color: "bg-teal-100",
+        textColor: "text-teal-900",
+        icon: CircleHelp,
+        details: [
+            "Dificultad para reconocer o nombrar tus emociones",
+            "Sensación de “no saber qué te pasa”",
+            "Confusión frente a tus decisiones o reacciones",
+            "Tendencia a minimizar lo que sientes",
+            "Dificultad para reconocer tus necesidades y límites",
+            "Sensación de desconexión contigo o con tu cuerpo"
+        ]
     },
     {
         id: 6,
-        title: "Dificultades Alimentación",
-        desc: "Construye una relación más tranquila con la comida; reduce culpa, ansiedad y atracones.",
-        color: "bg-green-100", // Verde suave
-        textColor: "text-green-900",
-        icon: Utensils
+        title: "Parejas",
+        desc: "Conflictos repetitivos, distancia emocional y dificultad para comunicarse o conectar.",
+        fullDesc: "A veces sientes que en la relación algo no está funcionando como antes. Aparecen discusiones, silencios o distancia emocional, y aunque hay intención de mejorar, no siempre saben cómo hacerlo.",
+        color: "bg-rose-100",
+        textColor: "text-rose-900",
+        icon: Heart,
+        details: [
+            "Discusiones frecuentes o silencios prolongados",
+            "Dificultad para expresar lo que sienten",
+            "Sensación de distancia emocional",
+            "Conflictos que se repiten sin resolverse",
+            "Falta de acuerdos, confianza o conexión"
+        ]
     },
     {
         id: 7,
-        title: "Incomprensión Personal",
-        desc: "Cuando no sabes qué te pasa: te ayudo a entender tus emociones y ganar claridad para decidir.",
-        color: "bg-teal-100", // Teal suave
-        textColor: "text-teal-900",
-        icon: CircleHelp
+        title: "Dificultades Sexuales",
+        desc: "Incomodidad, bloqueo o falta de fluidez en la vida sexual, generando malestar personal o en pareja.",
+        fullDesc: "A veces sientes que algo no fluye como te gustaría en tu vida sexual. Puede aparecer incomodidad, bloqueo, desconexión o preocupación, y esto empieza a generar malestar contigo mismo/a o en tus vínculos. No siempre es fácil hablarlo, y muchas veces se vive en silencio.",
+        color: "bg-red-100", // Rojo suave para variar
+        textColor: "text-red-900",
+        icon: Activity, // Usando Activity como metáfora de intimidad/energía física
+        details: [
+            "Sentir ansiedad, tensión o incomodidad en situaciones sexuales",
+            "Falta de deseo o dificultad para conectar con el disfrute",
+            "Pensamientos de presión, miedo o autoexigencia",
+            "Sensación de desconexión con tu cuerpo",
+            "Evitar encuentros íntimos para no sentirte mal",
+            "Vergüenza, culpa o frustración en relación a tu vida sexual",
+            "Dificultad para hablar de esto con tu pareja o con otras personas"
+        ]
     },
     {
         id: 8,
+        title: "Identidad",
+        desc: "Dudas y conflictos sobre quién eres, sensación de no encajar o no ser auténtico.",
+        fullDesc: "A veces sientes dudas, incomodidad o conflicto con aspectos de quién eres. Puede haber confusión, cuestionamientos o una sensación de no encajar del todo, y esto genera malestar interno o dificultad para relacionarte con los demás de manera auténtica.",
+        color: "bg-purple-100",
+        textColor: "text-purple-900",
+        icon: Fingerprint,
+        details: [
+            "Dudas persistentes sobre tu identidad o cómo te sientes contigo",
+            "Sensación de confusión o contradicción interna",
+            "Malestar al intentar encajar en expectativas externas",
+            "Miedo a expresar quién eres realmente",
+            "Sensación de no pertenecer o de estar “fuera de lugar”",
+            "Necesidad de entenderte mejor sin saber por dónde empezar"
+        ]
+    },
+    {
+        id: 9,
         title: "Duelo Migratorio",
-        desc: "Es el anhelo de lo que dejamos atrás al mudarnos (personas, lugares, costumbres) mientras nos adaptamos a lo nuevo.",
-        color: "bg-amber-100", // Ámbar (Nostalgia/Hogar)
+        desc: "Nostalgia y confusión al dejar atrás tu hogar, sintiéndote entre dos mundos.",
+        fullDesc: "A veces sientes una mezcla de nostalgia, tristeza y confusión al haber dejado atrás personas, lugares, costumbres y una forma de vida conocida. Mientras intentas adaptarte a lo nuevo, puede aparecer la sensación de no pertenecer del todo, de estar entre dos mundos. Este proceso no siempre es visible para los demás, pero se vive profundamente por dentro.",
+        color: "bg-amber-100",
         textColor: "text-amber-900",
         icon: Globe,
         details: [
-            "Extraño a mi gente y mis lugares, me siento fuera de lugar.",
-            "Echo de menos mis rutinas y mi forma de vivir.",
-            "Siento culpa por irme… o por quedarme.",
-            "A veces idealizo mi país; otras, idealizo el nuevo.",
-            "Estoy más sensible o cansado de lo normal."
+            "Extrañar a tu gente, tus lugares o tu cultura, y sentirte fuera de lugar",
+            "Echar de menos tus rutinas, tu forma de vivir o de relacionarte",
+            "Sentir culpa por haberte ido… o por quedarte",
+            "Idealizar a veces tu país de origen y, otras veces, el nuevo lugar",
+            "Sentirte más sensible, cansado/a o emocionalmente vulnerable",
+            "Tener la sensación de no encajar completamente ni aquí ni allá",
+            "Vivir emociones contradictorias: gratitud y tristeza al mismo tiempo"
         ]
     }
 ];
 
 const InteractiveServices = () => {
     const [selectedId, setSelectedId] = useState(null);
+    const location = useLocation();
+
+    // Función para manejar el cambio de hash
+    // Efecto para escuchar cambios de ruta, hash y eventos personalizados
+    useEffect(() => {
+        // Manejador para el evento personalizado desde el menú
+        const handleOpenService = (event) => {
+            const id = event.detail;
+            if (id) setSelectedId(id);
+        };
+
+        // Manejador tradicional por hash
+        const handleHashChange = () => {
+            if (window.location.hash && window.location.hash.includes('servicio-')) {
+                const id = parseInt(window.location.hash.split('servicio-')[1]);
+                if (!isNaN(id) && id >= 1 && id <= 9) {
+                    setTimeout(() => {
+                        setSelectedId(id);
+                    }, 600);
+                }
+            }
+        };
+
+        // Registrar listeners
+        window.addEventListener('openService', handleOpenService);
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Chequeo inicial
+        handleHashChange();
+
+        return () => {
+            window.removeEventListener('openService', handleOpenService);
+            window.removeEventListener('hashchange', handleHashChange);
+        };
+    }, [location]);
+
 
     return (
         <section className="section relative z-10 bg-white" id="servicios">
@@ -105,8 +226,10 @@ const InteractiveServices = () => {
                                 <p className={`text-base ${service.textColor} opacity-90 font-medium leading-relaxed`}>{service.desc}</p>
                             </div>
 
-                            <div className="mt-auto pt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent/60 opacity-0 group-hover:opacity-100 transition-opacity">
-                                Agendar <ArrowRight className="w-4 h-4" />
+                            <div className="mt-auto pt-4 flex items-center justify-between">
+                                <span className="text-sm font-bold text-accent/80 group-hover:text-accent transition-colors flex items-center gap-2">
+                                    Ver más <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </span>
                             </div>
                         </motion.div>
                     ))}
@@ -146,7 +269,7 @@ const InteractiveServices = () => {
 
                                             <h3 className={`text-3xl font-serif font-bold ${service.textColor} mb-4`}>{service.title}</h3>
                                             <p className={`text-lg ${service.textColor} leading-relaxed font-medium mb-8`}>
-                                                {service.desc}
+                                                {service.fullDesc || service.desc}
                                             </p>
 
                                             {service.details && (
