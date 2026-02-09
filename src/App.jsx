@@ -63,7 +63,7 @@ function App() {
         <img
           src="/logo.png?v=3"
           alt="Terapia Serena Logo"
-          className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl opacity-100"
+          className="h-14 md:h-32 w-auto object-contain drop-shadow-2xl opacity-100"
           onError={(e) => {
             e.target.style.display = 'none';
             e.target.nextSibling.style.display = 'block';

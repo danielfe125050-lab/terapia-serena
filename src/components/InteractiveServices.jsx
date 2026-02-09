@@ -208,27 +208,27 @@ const InteractiveServices = () => {
                     <p className="text-accent/60">Haz clic en cada tarjeta para saber más.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
                     {services.map((service) => (
                         <motion.div
                             id={`servicio-${service.id}`} // ID para navegación
                             layoutId={`card-${service.id}`}
                             onClick={() => setSelectedId(service.id)}
                             key={service.id}
-                            className={`p-4 md:p-8 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow border border-transparent ${service.color} relative overflow-hidden group md:min-h-[250px] flex flex-col`}
+                            className={`p-3 md:p-8 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow border border-transparent ${service.color} relative overflow-hidden group md:min-h-[250px] flex flex-col`}
                             whileHover={{ y: -5 }}
                         >
-                            <div className="mb-4">
-                                <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl bg-white/60 mb-3 md:mb-4`}>
-                                    <service.icon className={`w-6 h-6 ${service.textColor}`} />
+                            <div className="mb-2 md:mb-4">
+                                <div className={`w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-xl bg-white/60 mb-2 md:mb-4`}>
+                                    <service.icon className={`w-4 h-4 md:w-6 md:h-6 ${service.textColor}`} />
                                 </div>
-                                <h3 className={`text-lg md:text-xl font-bold ${service.textColor} mb-2 md:mb-3`}>{service.title}</h3>
-                                <p className={`text-sm md:text-base ${service.textColor} opacity-90 font-medium leading-relaxed`}>{service.desc}</p>
+                                <h3 className={`text-sm md:text-xl font-bold ${service.textColor} mb-1 md:mb-3 leading-tight`}>{service.title}</h3>
+                                <p className={`text-[10px] md:text-base ${service.textColor} opacity-90 font-medium leading-relaxed line-clamp-3 md:line-clamp-none`}>{service.desc}</p>
                             </div>
 
-                            <div className="mt-auto pt-4 flex items-center justify-between">
-                                <span className="text-sm font-bold text-accent/80 group-hover:text-accent transition-colors flex items-center gap-2">
-                                    Ver más <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            <div className="mt-auto pt-2 md:pt-4 flex items-center justify-between">
+                                <span className="text-[10px] md:text-sm font-bold text-accent/80 group-hover:text-accent transition-colors flex items-center gap-1 md:gap-2">
+                                    Ver más <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </div>
                         </motion.div>
