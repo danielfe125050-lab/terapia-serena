@@ -215,7 +215,7 @@ const InteractiveServices = () => {
                             layoutId={`card-${service.id}`}
                             onClick={() => setSelectedId(service.id)}
                             key={service.id}
-                            className={`p-5 md:p-8 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow border border-transparent ${service.color} relative overflow-hidden group min-h-[160px] md:min-h-[250px] flex flex-col`}
+                            className={`p-4 md:p-8 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow border border-transparent ${service.color} relative overflow-hidden group md:min-h-[250px] flex flex-col`}
                             whileHover={{ y: -5 }}
                         >
                             <div className="mb-4">

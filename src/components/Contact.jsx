@@ -52,7 +52,7 @@ const Contact = () => {
                 </div>
 
                 <div className="mt-20 pt-8 border-t border-gray-200 text-center text-sm text-gray-400">
-                    <p>© 2026 Terapia Serena. Inspirado en SanandotuMente. Todos los derechos reservados.</p>
+                    <p>© 2026 Terapia Serena. Inspirado en SanandotuMente. Todos los derechos reservados. <span className="opacity-30 ml-2">v1.2</span></p>
                 </div>
             </div>
         </footer>
