@@ -255,20 +255,20 @@ const InteractiveServices = () => {
                                         key={service.id}
                                         className={`max-w-md w-full rounded-3xl shadow-2xl overflow-hidden relative z-10 ${service.color}`}
                                     >
-                                        <div className="p-10">
+                                        <div className="p-6 md:p-10">
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); setSelectedId(null); }}
-                                                className="absolute top-6 right-6 p-2 bg-white/40 hover:bg-white/60 rounded-full transition-colors"
+                                                className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-white/40 hover:bg-white/60 rounded-full transition-colors z-20"
                                             >
-                                                <X className="w-5 h-5 text-gray-700" />
+                                                <X className="w-6 h-6 md:w-5 md:h-5 text-gray-700" />
                                             </button>
 
                                             <div className="mb-6">
                                                 <service.icon className={`w-12 h-12 ${service.textColor}`} />
                                             </div>
 
-                                            <h3 className={`text-3xl font-serif font-bold ${service.textColor} mb-4`}>{service.title}</h3>
-                                            <p className={`text-lg ${service.textColor} leading-relaxed font-medium mb-8`}>
+                                            <h3 className="text-2xl md:text-3xl font-serif font-bold text-blue-900 mb-4">{service.title}</h3>
+                                            <p className={`text-base md:text-lg ${service.textColor} leading-relaxed font-medium mb-8`}>
                                                 {service.fullDesc || service.desc}
                                             </p>
 

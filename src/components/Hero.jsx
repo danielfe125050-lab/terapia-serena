@@ -124,7 +124,7 @@ const Hero = () => {
                         <span className="text-secondary tracking-[0.2em] uppercase text-sm mb-4 md:mb-6 block font-bold">
                             {slide.subtitle}
                         </span>
-                        <h1 className="text-4xl md:text-6xl mb-6 md:mb-8 leading-tight font-serif text-white drop-shadow-xl text-balance">
+                        <h1 className="text-3xl md:text-6xl mb-6 md:mb-8 leading-tight font-serif text-white drop-shadow-xl text-balance">
                             {slide.title}
                         </h1>
                         <p className="text-lg md:text-xl mb-8 md:mb-10 text-gray-100 font-light max-w-lg leading-relaxed drop-shadow">
