@@ -61,7 +61,7 @@ function App() {
       {/* Logo Area - Configurado con absolute igual que el menú para alineación y comportamiento idéntico */}
       <div className="absolute top-6 left-6 z-[100] pointer-events-none">
         <img
-          src="/Logo.png"
+          src="/Logo.png?v=2"
           alt="Terapia Serena Logo"
           className="h-24 md:h-32 w-auto object-contain drop-shadow-2xl opacity-100"
           onError={(e) => {

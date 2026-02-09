@@ -215,15 +215,15 @@ const InteractiveServices = () => {
                             layoutId={`card-${service.id}`}
                             onClick={() => setSelectedId(service.id)}
                             key={service.id}
-                            className={`p-8 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow border border-transparent ${service.color} relative overflow-hidden group min-h-[250px] flex flex-col`}
+                            className={`p-5 md:p-8 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow border border-transparent ${service.color} relative overflow-hidden group min-h-[160px] md:min-h-[250px] flex flex-col`}
                             whileHover={{ y: -5 }}
                         >
                             <div className="mb-4">
-                                <div className={`w-12 h-12 flex items-center justify-center rounded-xl bg-white/60 mb-4`}>
+                                <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl bg-white/60 mb-3 md:mb-4`}>
                                     <service.icon className={`w-6 h-6 ${service.textColor}`} />
                                 </div>
-                                <h3 className={`text-xl font-bold ${service.textColor} mb-3`}>{service.title}</h3>
-                                <p className={`text-base ${service.textColor} opacity-90 font-medium leading-relaxed`}>{service.desc}</p>
+                                <h3 className={`text-lg md:text-xl font-bold ${service.textColor} mb-2 md:mb-3`}>{service.title}</h3>
+                                <p className={`text-sm md:text-base ${service.textColor} opacity-90 font-medium leading-relaxed`}>{service.desc}</p>
                             </div>
 
                             <div className="mt-auto pt-4 flex items-center justify-between">
