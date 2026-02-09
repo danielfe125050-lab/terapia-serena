@@ -55,8 +55,10 @@ const MainContent = () => {
             <Contact />
           </div>
         } />
+        {/* RUTAS DE SISTEMA DE USUARIOS - DESACTIVADAS TEMPORALMENTE
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        */}
       </Routes>
 
       <BackToTop />

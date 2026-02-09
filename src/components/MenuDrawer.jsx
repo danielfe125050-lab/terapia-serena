@@ -189,7 +189,7 @@ const MenuDrawer = () => {
                                             </AnimatePresence>
                                         </li>
                                     ))}
-                                    {/* Login Link Special */}
+                                    {/* Login Link Special (DESACTIVADO TEMPORALMENTE - DEMO FINALIZADA)
                                     <li className="border-b border-white/5 pb-2 pt-4">
                                         <button
                                             onClick={() => handleNavigation(user ? '/dashboard' : '/login')}
@@ -199,6 +199,7 @@ const MenuDrawer = () => {
                                             {user ? 'Mi Perfil' : 'Iniciar Sesión'}
                                         </button>
                                     </li>
+                                    */}
                                 </ul>
                             </nav>
 
