@@ -253,9 +253,9 @@ const InteractiveServices = () => {
                                     <motion.div
                                         layoutId={`card-${service.id}`}
                                         key={service.id}
-                                        className={`max-w-md w-full rounded-3xl shadow-2xl overflow-hidden relative z-10 ${service.color}`}
+                                        className={`max-w-md w-full max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl relative z-10 ${service.color}`}
                                     >
-                                        <div className="p-6 md:p-10">
+                                        <div className="p-5 md:p-10">
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); setSelectedId(null); }}
                                                 className="absolute top-4 right-4 md:top-6 md:right-6 p-2 bg-white/40 hover:bg-white/60 rounded-full transition-colors z-20"
@@ -263,21 +263,21 @@ const InteractiveServices = () => {
                                                 <X className="w-6 h-6 md:w-5 md:h-5 text-gray-700" />
                                             </button>
 
-                                            <div className="mb-6">
-                                                <service.icon className={`w-12 h-12 ${service.textColor}`} />
+                                            <div className="mb-4 md:mb-6">
+                                                <service.icon className={`w-10 h-10 md:w-12 md:h-12 ${service.textColor}`} />
                                             </div>
 
-                                            <h3 className="text-2xl md:text-3xl font-serif font-bold text-blue-900 mb-4">{service.title}</h3>
-                                            <p className={`text-base md:text-lg ${service.textColor} leading-relaxed font-medium mb-8`}>
+                                            <h3 className="text-xl md:text-3xl font-serif font-bold text-blue-900 mb-3 md:mb-4 leading-tight">{service.title}</h3>
+                                            <p className={`text-sm md:text-lg ${service.textColor} leading-relaxed font-medium mb-6 md:mb-8`}>
                                                 {service.fullDesc || service.desc}
                                             </p>
 
                                             {service.details && (
-                                                <div className={`mb-8 p-6 rounded-2xl bg-white/50 border border-white/40`}>
-                                                    <h4 className={`font-bold mb-4 uppercase tracking-wider text-sm ${service.textColor} opacity-80`}>Señales Comunes:</h4>
-                                                    <ul className={`space-y-3 ${service.textColor}`}>
+                                                <div className={`mb-6 md:mb-8 p-4 md:p-6 rounded-2xl bg-white/50 border border-white/40`}>
+                                                    <h4 className={`font-bold mb-3 md:mb-4 uppercase tracking-wider text-[10px] md:text-sm ${service.textColor} opacity-80`}>Señales Comunes:</h4>
+                                                    <ul className={`space-y-2 md:space-y-3 ${service.textColor}`}>
                                                         {service.details.map((item, idx) => (
-                                                            <li key={idx} className="flex gap-3 text-base leading-snug">
+                                                            <li key={idx} className="flex gap-2 md:gap-3 text-xs md:text-base leading-snug">
                                                                 <span className="opacity-50">•</span>
                                                                 {item}
                                                             </li>
